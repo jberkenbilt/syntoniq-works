@@ -1,0 +1,412 @@
+syntoniq(version=1)
+define_generated_scale(
+    scale="S"
+    ; change divisions for different EDO; comment out for JI
+    divisions=72
+)
+use_scale(scale="S")
+tempo(bpm=60)
+
+csound_template(path="voicelike-1.csd")
+csound_global_instrument(name="Reverb")
+
+; REAPER: "r" toggles loop mode; click and drag in ruler, not track
+
+transpose(pitch_from=M written=A)
+
+; 72-EDO approximations:
+; Jk = 1
+; Gh = 2
+; Fg = 3
+;  Y = 4
+;  U = 5
+;  M = 6
+; LL = F- = 12-EDO minor third (also F%)
+; II = E+ = 12-EDO major third
+;  R = closest 12-EDO half step
+; JK is a good neutral third
+; JD = C-
+; ER = D-
+
+; Use part p0 for things at default volume. Use other parts when we
+; need to specifically control volume. Restore volume to normal when
+; no note is playing on the part if we want to reuse it.
+
+; Time offsets are from the original audio, not the output, though the
+; output is intended to be close.
+
+save_pitch(note=A var="orig_A")
+;; 0:00.785
+[p1.0] 16:C
+  [p1]                96@4> 0@10
+[p0.1] 1:~ 15:A'
+[p2.0] 2:~       14:p'
+  [p2]                    96@5> 0@10
+[p0.2] 3:~            13:Ck
+[p0.3] 4:~                 12:CK
+[p0.4] 6:~                         10:A
+[p0.5] 6:~                         10:J
+  [p0] 96@0
+
+;; 0:16.865
+mark(label="a")
+  [p1] 96@1
+  [p2] 96@1
+[p0.1] 10:f,
+[p0.2] 1/2:~ 9.5:E
+[p0.3] 1:~ 9:A'
+[p0.4] 1:~ 9:I'
+[p0.5] 3:~ 7:J
+[p3.0] 3:~ 7:p'
+  [p3] 96@3> 0@6
+[p0.6] 5:~ 5:ER
+[p0.7] 5:~ 5:JD
+
+;; 0:26.670
+mark(label="b")
+transpose(pitch_from=MP written=A)
+  [p3] 96@1
+[p1.1] 7:ll
+[p1.2] 7:A
+[p1.3] 7:E
+[p0.4] 7:C
+[p0.5] 7:p'
+[p0.6] 2.5:~ 4.5:ll, ;; 0:29.145
+[p0.7] 2.5:~ 4.5:I,
+[p0.9] 2.5:~ 4.5:C,
+
+;; 0:33.725
+mark(label="c")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=G written=A)
+[p1.1] 8:ll
+[p1.2] 8:A
+[p1.3] 8:E
+  [p1] 64@0 64@4< 96@8
+[p0.4] 8:C
+[p0.5] 8:p'
+[p0.6] 1:~ 7:A'
+[p0.7] 3:~ 5:ll,
+[p0.8] 3:~ 5:J,
+[p0.9] 3:~ 5:E,
+[p0.10] 3:~ 5:C,
+
+;; 0:41.265
+mark(label="d")
+  [p1] 96@1
+[p0.1] 17.5:ll
+[p0.2] 17.5:A
+[p0.3] 17.5:E
+[p0.4] 17.5:p'
+[p0.5] 17.5:I'
+[p0.6] 2:~ 15.5:C
+[p0.7] 2:~ 15.5:A'
+[p0.8] 5:~ 12.5:D,2
+[p0.9] 5:~ 12.5:C,
+[p0.10] 5:~ 12.5:p
+
+[p0.1] 1/2:~
+
+;; 1:00
+mark(label="e")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=DH, written=A)
+  [p0] 64@0
+[p0.1] 5:D'
+[p0.2] 5:I'
+[p0.3] 5:i'
+[p0.4] 5:CI
+[p0.5] 1:~ 4:C,
+[p0.6] 1:~ 4:C,2
+[p0.7] 2:~ 3:LL
+[p0.8] 2:~ 3:LL'
+[p1.1] 3:~      2:LL
+[p1.2] 3:~      2:LL'
+  [p1]        108@3
+
+;; 1:04.715
+mark(label="f")
+  [p0] 96@0
+[p0.1] 7:j'
+[p0.2] 7:Ek'
+[p0.3] 7:Cr'
+[p0.5] 2:~ 5:C,2
+[p0.6] 2:~ 5:C,
+[p1.1] 3:~ 4:II
+[p1.2] 3:~ 4:II'
+[p1.3] 4:~      3:II
+[p1.4] 4:~      3:II'
+
+;; 1:11.760
+mark(label="g")
+; DH -> C goes up 2 72-EDO steps
+transpose(pitch_from=DH written=C)
+  [p0] 108@0
+[p0.1] 12:C,
+[p0.2] 12:C
+[p0.3] 12:h'
+[p0.4] 12:C'
+[p0.5] 7:A' 5:A:~  ;; 1:18.800
+[p0.6] 7:Cr' 5:Cr:~
+[p0.7] 1:~ 11:C,2
+[p0.8] 1:~ 6:I 5:I':~
+[p0.9] 3:~ 9:E
+[p0.10] 3:~ 9:E'
+
+;; 1:23.885
+mark(label="g1")
+  [p0] 96@0
+  [p1] 96@1
+[p0.5] 8:A
+[p0.6] 8:Cr
+[p0.7] 8:e,
+[p0.8] 8:I'
+
+[p0.0] 2:~
+
+mark(label="h")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=g written=A)
+
+;; 1:33.890
+[p0.1] 6:r'
+[p0.2] 0.2:~ 5.8:I'
+[p0.3] 0.2:~ 5.8:A
+[p0.4]   2:~   4:JL  ;; 1:35.915
+[p0.5]   2:~   4:DJL
+[p0.6]   2:~   4:Im'
+
+;; 1:40.085
+mark(label="i")
+[p0.6] 0.5:~ DK,2
+
+[p0.1] 7.5:r'
+[p0.2] 7.5:I'
+[p0.3] 7.5:Um,
+[p0.4] 3:~ 4.5:JL  ;; 1:42.855
+[p0.5] 3:~ 4.5:DJL
+[p0.6] 3:~ 4.5:JLf'
+
+mark(label="j")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=CK, written=A)
+
+;; 1:47.790
+tempo(bpm=90)
+[p0.1] 4:LL'
+[p0.2] 4:Cp
+[p0.3] 4:p'
+[p0.4] 1:~ 3:R'
+[p0.5] 2:ll,     2:A,
+[p0.6] 3:~           1:DJ,
+
+tempo(bpm=75)
+tempo(bpm=60 start_time=3)
+[p0.1] 4:LL'
+[p0.2] 4:Cp
+[p0.3] 4:p'
+[p0.4] 1:~ 3:R'
+[p0.5] 2:ll,     2:A,
+[p0.6] 3:~           1:DJ,
+
+tempo(bpm=60)
+[p0.1] 5:LL'
+[p0.2] 5:Cp
+[p0.3] 5:p'
+[p0.4] 1:~ 4:R'
+[p0.5] 2:ll,     3:A,
+
+;; 1:58.355
+mark(label="k")
+[p0.1] 3:Cr'
+[p0.2] 3:Cr
+[p0.3] 3:DJ,:~
+[p0.4] 3:Rf':~
+[p0.5] 3:Dr:~
+[p0.6] 3:J':~
+
+;; 2:01.550
+[p0.1] 4:DJ'
+[p0.2] 4:DJ
+[p0.3] 4:DJ,
+[p0.4] 4:Rf'
+[p0.5] 4:Dr
+[p0.6] 4:J'
+
+;; 2:05.780
+mark(label="l")
+[p0.1] 6:A,:~
+[p0.2] 6:C,:~
+[p0.3] 6:Dg:~
+[p0.4] 6:D:~
+[p0.5] 6:JK':~
+[p0.6] 6:C':~
+  [p0] 127@0> 96@4
+
+;; 2:11.440
+mark(label="m")
+[p0.1] 8:A,
+[p0.2] 8:C,
+[p0.3] 2:Dg 6:H
+[p0.4] 8:D
+[p0.5] 8:JK'
+[p0.6] 8:C'
+[p0.7] 8:H'
+[p0.8] 1:~ 7:DF
+[p0.9] 2:~ 6:Hi'
+[p0.10] 2:~ 6:i
+[p1.1]  7:~ 1:j':~
+  [p1] 64@0
+
+;; 2:20.870
+mark(label="n")
+[p1.1] 15:j'
+[p0.1] 4:~ 11:CR,
+[p0.2] 4:~ 11:CR
+[p0.3] 4:~ 5:K' 6:Kj'
+[p0.4] 4:~ 11:Cp
+[p0.5] 9:~      6:Dp
+[p0.6] 9:~      6:j'
+
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=H written=A)
+
+;; 2:35.845
+mark(label="o")
+  [p1] 96@1
+[p0.1] 4:A':~
+[p0.2] 0.5:~ 3.5:A:~
+[p0.3] 1.5:~    1.5:e 1:C,:~
+[p0.4] 1.5:~    1.5:D 1:E:~
+
+;; 2:39.830
+[p0.1] 12:A'
+[p0.2] 12:A
+[p0.3] 12:C,
+[p0.4] 12:E
+[p0.5] 12:I
+[p0.6] 12:C
+[p0.7] 12:I'
+[p0.8] 6:~ 6:h   ;; 2:45.415
+[p0.9] 6:~ 6:Cm
+
+;; 2:51.260
+mark(label="p")
+tempo(bpm=48)
+  [p0] 72@0
+[p0.1] 4/5:F,2   6/5:A,2
+[p0.2] 4/5:FC,2  6/5:FDr,
+[p0.3] 4/5:D,    6/5:Dr,
+[p0.4] 2:Fr:~
+[p0.5] 2:FDr:~
+[p0.6] 4/5:~     6/5:A,
+[p1.7] 8/5:~         2/5:A
+  [p1] 127@0
+
+tempo(bpm=48 end_bpm=36 start_time=1 duration=1)
+[p0.1] 4/5:F,2   6/5:A,2
+[p0.2] 4/5:FC,2  6/5:FDr,
+[p0.3] 4/5:D,    6/5:Dr,
+[p0.4] 2:Fr
+[p0.5] 2:FDr
+[p0.6] 4/5:~     6/5:A,
+[p1.7] 8/5:~         2/5:R
+[p1.8] 8/5:~         2/5:CR
+[p0.9] 4/5:~     6/5:Jd,
+  [p0] 80@0< 96@2
+
+;; 2:56.315
+mark(label="q")
+tempo(bpm=90)
+[p0.1] 2:F,2   3:A,2:~
+[p0.2] 2:FC,2  3:FDr,:~
+[p0.3] 2:D,    3:Dr,:~
+[p0.4] 5:Fr:~
+[p0.5] 5:FDr:~
+[p0.6] 2:~     3:Jd,:~
+[p0.7] 2:~     3:A,:~
+
+;; 3:00.810
+tempo(bpm=90 end_bpm=60 duration=2)
+[p0.1] 13:A,2
+[p0.2] 13:FDr,
+[p0.3] 13:Dr,
+[p0.4] 13:Fr
+[p0.5] 13:FDr
+[p0.6] 13:Jd,
+[p0.7] 13:A,
+[p0.8] 13:FCr
+[p0.9] 1:~ 12:FCr,
+[p0.10] 2:~       11:Cr
+[p1.1]  2:~       11:Fr
+
+[p0.1] 1/2:~
+
+mark(label="r")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=DH, written=A)
+;; 3:13.125
+  [p0] 72@0
+[p0.1] 7:I,
+[p0.2] 1.5:IF 5.5:~
+[p0.3] 7:IC
+[p0.4] 7:A'
+[p0.5] 7:II'
+[p0.6] 1.5:~ 5.5:Cl
+[p0.7] 1.5:~ 5.5:Cl'
+
+;; 3:20.625
+mark(label="r1")
+tempo(bpm=60)
+; The "out of tune" note here is the original tonic
+check_pitch(var="orig_A" note=dh')
+[p0.1] 8:A,
+[p0.2] 8:E
+[p0.3] 8:C
+[p0.4] 8:r'
+[p0.5] 8:I'
+[p0.6] 8:C'
+[p1.1] 2:~ 6:dh'2
+  [p1] 127@0
+  [p0] 72@4< 96@8
+
+;; 3:28.685
+mark(label="s")
+restore_pitch(var="orig_A" note=A)
+  [p1] 96@1
+[p0.1] 11:F,2
+[p0.2] 11:FC,2
+[p0.3] 11:Ci
+[p0.4] 11:CK
+[p0.5] 3:~ 8:F,  ;; 3:31.645
+[p0.6] 3:~ 8:FC,
+[p0.7] 3:~ 8:U
+
+;; 3:39.685
+mark(label="t")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=HF written=G)
+[p0.1] 18:A,
+[p0.2] 18:I,
+[p0.3] 18:D,
+[p0.4] 18:C,
+[p0.5] 18:j
+[p0.6] 18:I
+[p0.7] 18:II
+[p1.1] 18:A,2
+  [p1] 64@0
+
+[p0.1] 3:~
+
+;; 3:59.955
+mark(label="u")
+restore_pitch(var="orig_A" note=A)
+transpose(pitch_from=MP written=A)
+[p0.1] 24:A,2
+[p0.2] 24:I,
+[p0.3] 24:E,
+[p0.4] 24:C,
+[p0.5] 24:A
+  [p0] 72@0 72@12> 32@20
+
+;; end: 4:24.500
